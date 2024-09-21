@@ -5,3 +5,4 @@ npm install react react-dom
 npm install --save-dev @babel/preset-env @babel/preset-react
 npm install --save-dev @babel/plugin-transform-runtime
 npm install --save @babel/runtime
+npm install --save-dev jest-environment-jsdom
