@@ -1,0 +1,18 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "jsx": "react-jsx", // For React 17.x and React 18.x
+        "module": "ESNext", // Choose a module system (ES6 or ESNext)
+        "target": "ES5", // Target ECMAScript version
+        "strict": true, // Enables strict type-checking options
+        "esModuleInterop": true, // Enables compatibility between ES modules and CommonJS modules
+        "skipLibCheck": true, // Skip type-checking of all declaration files
+        "moduleResolution": "node" // Helps with resolving module paths
+    },
+    "include": [
+        "."
+    ], // Ensure your source files are included
+    "exclude": [
+        "node_modules"
+    ] // Avoid compiling unnecessary files
+}
