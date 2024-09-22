@@ -9,3 +9,4 @@ npm install --save @babel/runtime
 npm install --save-dev jest-environment-jsdom
 
 # Support to ts
+npm install --save-dev @types/jest
