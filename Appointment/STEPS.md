@@ -10,4 +10,9 @@ npm install --save-dev jest-environment-jsdom
 
 # Support to ts
 npm install --save-dev @types/jest
-npm install typescript --save-dev
+npm install --save-dev typescript
+npm install --save-dev @babel/preset-typescript
+npm install --save-dev ts-jest
+npx ts-jest config:init
+npm install i --save-dev @types/react
+npm install i --save-dev @types/react-dom

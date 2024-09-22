@@ -1,13 +1,13 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom/client";
 import { act } from 'react';
 
 import { Appointment } from "../src/Appointment";
 
 describe("Appointment", () => {
-    let container;
+    let container: HTMLDivElement;
 
-    const render = (component) => act(() => ReactDOM.createRoot(container).render(component))
+    const render = (component: ReactNode) => act(() => ReactDOM.createRoot(container).render(component))
 
     beforeEach(() => {
         container = document.createElement("div");
