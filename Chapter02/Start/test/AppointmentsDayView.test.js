@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { act } from "react-dom/test-utils";
-import { Appointment, AppointmentsDayView } from "../src/Appointment";
+import { Appointment, AppointmentsDayView } from "../src/AppointmentsDaysView";
 
 describe("Appointment", () => {
   let container;
@@ -32,6 +32,42 @@ describe("Appointment", () => {
     expect(document.body.textContent).toContain(
       "Jordan"
     );
+  });
+
+  it("renders the customer last name", () => {
+    const customer = { lastName: "Cooper" };
+    render(<Appointment customer={customer} />);
+    expect(document.body.textContent).toContain(
+      "Cooper"
+    );
+  });
+
+  it("renders the customer phone number", () => {
+    const customer = { phoneNumber: "+34 657 675 555" };
+    render(<Appointment customer={customer} />);
+    expect(document.body.textContent).toContain(
+      "+34 657 675 555"
+    );
+  });
+
+  it("renders stylist name, using the stylist field", () => {
+    render(<Appointment stylist={"Aurelio"} />);
+    expect(document.body.textContent).toContain("Aurelio");
+  });
+
+  it("renders saloon service, using the service field", () => {
+    render(<Appointment service={"Cut"} />);
+    expect(document.body.textContent).toContain("Cut");
+  });
+
+  it("renders Appointment notes, using the notes field", () => {
+    render(<Appointment notes={"Crazy man"} />);
+    expect(document.body.textContent).toContain("Crazy man");
+  });
+
+  it("renders Appointment time using startsAt field", () => {
+    render(<Appointment startsAt={10} />);
+    expect(document.body.textContent).toContain("10");
   });
 });
 
