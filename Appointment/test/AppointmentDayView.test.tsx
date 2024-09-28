@@ -12,11 +12,13 @@ const emptyCustomer: Customer = {
 
 const emptyStylistName = "";
 const emptyService = "";
+const emptyNote = "";
 
 const defaultAppointment = {
     customer: emptyCustomer,
     stylistName: emptyStylistName,
     service: emptyService,
+    notes: emptyNote
 }
 
 describe("Appointment", () => {
@@ -66,6 +68,13 @@ describe("Appointment", () => {
         render(<Appointment {...defaultAppointment} service={service} />);
         expect(document.body.textContent).toContain(service);
     });
+
+    it("renders appointment notes", () => {
+        const notes = "Note about appointment"
+        render(<Appointment {...defaultAppointment} notes={notes} />);
+        expect(document.body.textContent).toContain(notes);
+    });
+
 });
 
 describe("AppointmentsDayView", () => {

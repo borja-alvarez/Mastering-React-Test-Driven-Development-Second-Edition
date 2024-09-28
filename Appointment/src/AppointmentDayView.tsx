@@ -10,15 +10,17 @@ interface Props {
     customer: Customer;
     stylistName: string;
     service: string;
+    notes: string;
 }
 
-export const Appointment: React.FC<Props> = ({ customer, stylistName, service }) => {
+export const Appointment: React.FC<Props> = ({ customer, stylistName, service, notes }) => {
     return <>
         <div>{customer.firstName}</div>
         <div>{customer.lastName}</div>
         <div>{customer.phoneNumber}</div>
         <div>{stylistName}</div>
         <div>{service}</div>
+        <div>{notes}</div>
     </>
 };
 
@@ -28,6 +30,7 @@ export interface AppointmentsDayViewProps {
         customer: Customer;
         stylistName: string;
         service: string;
+        notes: string;
     }[];
 }
 
