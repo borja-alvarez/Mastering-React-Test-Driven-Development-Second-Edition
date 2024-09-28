@@ -1,9 +1,9 @@
 import React from "react";
 
+type Customer = { firstName: string; }
+
 interface Props {
-    customer: {
-        firstName: string;
-    }
+    customer: Customer
 }
 
 export const Appointment: React.FC<Props> = ({ customer }) => {
@@ -12,7 +12,8 @@ export const Appointment: React.FC<Props> = ({ customer }) => {
 
 interface AppointmentsDayViewProps {
     appointments?: {
-        startsAt: number
+        startsAt: number;
+        customer: Customer
     }[];
 }
 
@@ -25,10 +26,11 @@ export const AppointmentsDayView: React.FC<AppointmentsDayViewProps> = (props) =
     return <div id="appointmentsDayView">
         {appointments.length === 0 ?
             <p>{"There are no appointments scheduled for today."}</p>
-            : appointments.map((appointment) => {
-                return <li key={appointment.startsAt}>
-                    {appointmentTimeOfDay(appointment.startsAt)}
-                </li>
-            })}
+            : <Appointment  {...appointments[0]} />}
+        {appointments.map((appointment) => {
+            return <li key={appointment.startsAt}>
+                {appointmentTimeOfDay(appointment.startsAt)}
+            </li>
+        })}
     </div>
 }
