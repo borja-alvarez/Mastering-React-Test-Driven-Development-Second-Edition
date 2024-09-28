@@ -10,11 +10,13 @@ const emptyCustomer: Customer = {
     phoneNumber: "",
 }
 
-const emptyStylistName = ""
+const emptyStylistName = "";
+const emptyService = "";
 
 const defaultAppointment = {
     customer: emptyCustomer,
-    stylistName: emptyStylistName
+    stylistName: emptyStylistName,
+    service: emptyService,
 }
 
 describe("Appointment", () => {
@@ -52,10 +54,17 @@ describe("Appointment", () => {
         render(<Appointment {...defaultAppointment} customer={customer} />);
         expect(document.body.textContent).toContain("+34 789 654 123");
     });
-    it(" renders stylist name", () => {
+
+    it("renders stylist name", () => {
         const stylistName = "Jhon"
         render(<Appointment {...defaultAppointment} stylistName={stylistName} />);
         expect(document.body.textContent).toContain(stylistName);
+    });
+
+    it("renders salon service", () => {
+        const service = "Cut"
+        render(<Appointment {...defaultAppointment} service={service} />);
+        expect(document.body.textContent).toContain(service);
     });
 });
 
