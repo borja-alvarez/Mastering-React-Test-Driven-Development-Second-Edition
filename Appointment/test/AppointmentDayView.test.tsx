@@ -16,7 +16,7 @@ const emptyCustomer: Customer = {
 
 const defaultAppointment: AppointmentProps = {
     customer: emptyCustomer,
-    stylistName: emptyStylistName,
+    stylist: emptyStylistName,
     service: emptyService,
     notes: emptyNote,
     startsAt: emptystartsAt
@@ -58,7 +58,7 @@ describe("Appointment", () => {
 
     it("renders stylist name", () => {
         const stylistName = "Jhon"
-        render(<Appointment {...defaultAppointment} stylistName={stylistName} />);
+        render(<Appointment {...defaultAppointment} stylist={stylistName} />);
         expect(document.body.textContent).toContain(stylistName);
     });
 
