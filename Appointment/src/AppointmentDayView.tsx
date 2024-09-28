@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export type Customer = {
     firstName: string;
     lastName: string;
+    phoneNumber: string;
 }
 
 interface Props {
@@ -13,6 +14,7 @@ export const Appointment: React.FC<Props> = ({ customer }) => {
     return <>
         <div>{customer.firstName}</div>
         <div>{customer.lastName}</div>
+        <div>{customer.phoneNumber}</div>
     </>
 };
 

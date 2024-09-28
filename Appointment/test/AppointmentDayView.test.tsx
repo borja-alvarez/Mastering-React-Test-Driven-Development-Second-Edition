@@ -4,13 +4,16 @@ import { act } from 'react';
 
 import { Appointment, AppointmentsDayView, Customer } from "../src/AppointmentDayView";
 
+const emptyCustomer: Customer = {
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+}
+
 describe("Appointment", () => {
     let container: HTMLDivElement;
 
-    const emptyCustomer: Customer = {
-        firstName: "",
-        lastName: ""
-    }
+
 
     const render = (component: ReactNode) => act(() => ReactDOM.createRoot(container).render(component))
 
@@ -36,6 +39,12 @@ describe("Appointment", () => {
         render(<Appointment customer={customer} />);
         expect(document.body.textContent).toContain("Smith");
     });
+
+    it("renders customer phone number", () => {
+        const customer: Customer = { ...emptyCustomer, phoneNumber: "+34 789 654 123" }
+        render(<Appointment customer={customer} />);
+        expect(document.body.textContent).toContain("+34 789 654 123");
+    });
 });
 
 describe("AppointmentsDayView", () => {
@@ -45,11 +54,11 @@ describe("AppointmentsDayView", () => {
     const twoAppointments = [
         {
             startsAt: today.setHours(12, 0),
-            customer: { firstName: "Ashley", lastName: "Smith" }
+            customer: { ...emptyCustomer, firstName: "Ashley", }
         },
         {
             startsAt: today.setHours(13, 0),
-            customer: { firstName: "Jordan", lastName: "Trump" }
+            customer: { ...emptyCustomer, firstName: "Jordan" }
         }
     ];
 
