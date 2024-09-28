@@ -17,8 +17,16 @@ interface AppointmentsDayViewProps {
 }
 
 export const AppointmentsDayView: React.FC<AppointmentsDayViewProps> = (props) => {
-    const { appointments = [] } = props
+    const { appointments = [] } = props;
+    const appointmentTimeOfDay = (startsAt: number): string => {
+        const [h, m] = new Date(startsAt).toTimeString().split(":");
+        return `${h}:${m}`
+    }
     return <div id="appointmentsDayView">
-        {appointments.map((appointment, index) => <li key={appointment.startsAt}></li>)}
+        {appointments.map((appointment) => {
+            return <li key={appointment.startsAt}>
+                {appointmentTimeOfDay(appointment.startsAt)}
+            </li>
+        })}
     </div>
 }

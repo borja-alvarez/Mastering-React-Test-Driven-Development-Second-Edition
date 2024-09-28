@@ -59,5 +59,18 @@ describe("AppointmentsDayView", () => {
         expect(listElement).toHaveLength(2)
     });
 
+    it("renders the time of each appointment", () => {
+        const today = new Date();
+        const twoAppointments = [
+            { startsAt: today.setHours(12, 0) },
+            { startsAt: today.setHours(13, 0) }
+        ];
+        render(<AppointmentsDayView appointments={twoAppointments} />);
+        const listElement = document.querySelectorAll("li")
+
+        expect(listElement[0].textContent).toEqual("12:00")
+        expect(listElement[1].textContent).toEqual("13:00")
+    });
+
 
 });
