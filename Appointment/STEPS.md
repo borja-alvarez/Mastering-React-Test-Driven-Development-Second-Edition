@@ -16,3 +16,6 @@ npm install --save-dev ts-jest
 npx ts-jest config:init
 npm install i --save-dev @types/react
 npm install i --save-dev @types/react-dom
+
+# Adding webpack
+npm install --save-dev webpack webpack-cli babel-loader

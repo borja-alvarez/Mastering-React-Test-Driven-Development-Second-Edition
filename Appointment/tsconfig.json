@@ -1,6 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+        "outDir": "./dist",
         "jsx": "react-jsx", // For React 17.x and React 18.x
         "module": "ESNext", // Choose a module system (ES6 or ESNext)
         "target": "ES5", // Target ECMAScript version
@@ -11,8 +12,8 @@
     },
     "include": [
         "."
-    ], // Ensure your source files are included
+    ],
     "exclude": [
         "node_modules"
-    ] // Avoid compiling unnecessary files
+    ]
 }
