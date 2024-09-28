@@ -2,29 +2,28 @@ import React, { ReactNode } from "react";
 import ReactDOM from "react-dom/client";
 import { act } from 'react';
 
-import { Appointment, AppointmentsDayView, Customer } from "../src/AppointmentDayView";
+import { Appointment, AppointmentProps, AppointmentsDayView, Customer } from "../src/AppointmentDayView";
 
+const emptyNote = "";
+const emptyService = "";
+const emptystartsAt = 0;
+const emptyStylistName = "";
 const emptyCustomer: Customer = {
     firstName: "",
     lastName: "",
     phoneNumber: "",
 }
 
-const emptyStylistName = "";
-const emptyService = "";
-const emptyNote = "";
-
-const defaultAppointment = {
+const defaultAppointment: AppointmentProps = {
     customer: emptyCustomer,
     stylistName: emptyStylistName,
     service: emptyService,
-    notes: emptyNote
+    notes: emptyNote,
+    startsAt: emptystartsAt
 }
 
 describe("Appointment", () => {
     let container: HTMLDivElement;
-
-
 
     const render = (component: ReactNode) => act(() => ReactDOM.createRoot(container).render(component))
 
@@ -73,6 +72,13 @@ describe("Appointment", () => {
         const notes = "Note about appointment"
         render(<Appointment {...defaultAppointment} notes={notes} />);
         expect(document.body.textContent).toContain(notes);
+    });
+
+    it("renders appointment time", () => {
+        const today = new Date();
+        const startsAt = today.setHours(12, 0);
+        render(<Appointment {...defaultAppointment} startsAt={startsAt} />);
+        expect(document.body.textContent).toContain("12:00");
     });
 
 });

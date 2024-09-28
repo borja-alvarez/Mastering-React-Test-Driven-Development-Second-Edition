@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 
+const appointmentTimeOfDay = (startsAt: number): string => {
+    const [h, m] = new Date(startsAt).toTimeString().split(":");
+    return `${h}:${m}`
+}
+
 export type Customer = {
     firstName: string;
     lastName: string;
     phoneNumber: string;
 }
 
-interface Props {
+export interface AppointmentProps {
     customer: Customer;
     stylistName: string;
     service: string;
     notes: string;
+    startsAt: number;
 }
 
-export const Appointment: React.FC<Props> = ({ customer, stylistName, service, notes }) => {
+export const Appointment: React.FC<AppointmentProps> = (props) => {
+    const { customer, stylistName, service, notes, startsAt } = props
     return <>
         <div>{customer.firstName}</div>
         <div>{customer.lastName}</div>
@@ -21,6 +28,7 @@ export const Appointment: React.FC<Props> = ({ customer, stylistName, service, n
         <div>{stylistName}</div>
         <div>{service}</div>
         <div>{notes}</div>
+        <div>{appointmentTimeOfDay(startsAt)}</div>
     </>
 };
 
@@ -37,10 +45,7 @@ export interface AppointmentsDayViewProps {
 export const AppointmentsDayView: React.FC<AppointmentsDayViewProps> = (props) => {
     const { appointments = [] } = props;
     const [selected, setSelected] = useState<number>(0);
-    const appointmentTimeOfDay = (startsAt: number): string => {
-        const [h, m] = new Date(startsAt).toTimeString().split(":");
-        return `${h}:${m}`
-    }
+
     return <div id="appointmentsDayView">
         {appointments.length === 0 ?
             <p>{"There are no appointments scheduled for today."}</p>
