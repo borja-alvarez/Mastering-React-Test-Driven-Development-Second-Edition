@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 
-type Customer = { firstName: string; }
+export type Customer = {
+    firstName: string;
+    lastName: string;
+}
 
 interface Props {
     customer: Customer
 }
 
 export const Appointment: React.FC<Props> = ({ customer }) => {
-    return <div>{customer.firstName}</div>
+    return <>
+        <div>{customer.firstName}</div>
+        <div>{customer.lastName}</div>
+    </>
 };
 
 interface AppointmentsDayViewProps {

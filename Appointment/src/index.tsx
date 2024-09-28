@@ -1,4 +1,4 @@
-import { AppointmentsDayView } from "./Appointment"
+import { AppointmentsDayView } from "./AppointmentDayView"
 import ReactDOM from "react-dom/client"
 import { sampleAppointments } from "./SampleData";
 

@@ -2,10 +2,15 @@ import React, { ReactNode } from "react";
 import ReactDOM from "react-dom/client";
 import { act } from 'react';
 
-import { Appointment, AppointmentsDayView } from "../src/Appointment";
+import { Appointment, AppointmentsDayView, Customer } from "../src/AppointmentDayView";
 
 describe("Appointment", () => {
     let container: HTMLDivElement;
+
+    const emptyCustomer: Customer = {
+        firstName: "",
+        lastName: ""
+    }
 
     const render = (component: ReactNode) => act(() => ReactDOM.createRoot(container).render(component))
 
@@ -15,15 +20,21 @@ describe("Appointment", () => {
     });
 
     it("renders the customer first name", () => {
-        const customer = { firstName: "Ashley" }
+        const customer: Customer = { ...emptyCustomer, firstName: "Ashley" }
         render(<Appointment customer={customer} />);
         expect(document.body.textContent).toContain("Ashley");
     });
 
-    it("renders another customer first name", () => {
-        const customer = { firstName: "Jordan" }
+    it("renders another customer last name", () => {
+        const customer: Customer = { ...emptyCustomer, firstName: "Jordan" }
         render(<Appointment customer={customer} />);
         expect(document.body.textContent).toContain("Jordan");
+    });
+
+    it("renders customer last name", () => {
+        const customer: Customer = { ...emptyCustomer, lastName: "Smith" }
+        render(<Appointment customer={customer} />);
+        expect(document.body.textContent).toContain("Smith");
     });
 });
 
@@ -34,11 +45,11 @@ describe("AppointmentsDayView", () => {
     const twoAppointments = [
         {
             startsAt: today.setHours(12, 0),
-            customer: { firstName: "Ashley" }
+            customer: { firstName: "Ashley", lastName: "Smith" }
         },
         {
             startsAt: today.setHours(13, 0),
-            customer: { firstName: "Jordan" }
+            customer: { firstName: "Jordan", lastName: "Trump" }
         }
     ];
 
