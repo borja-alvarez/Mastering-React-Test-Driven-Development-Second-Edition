@@ -23,10 +23,12 @@ export const AppointmentsDayView: React.FC<AppointmentsDayViewProps> = (props) =
         return `${h}:${m}`
     }
     return <div id="appointmentsDayView">
-        {appointments.map((appointment) => {
-            return <li key={appointment.startsAt}>
-                {appointmentTimeOfDay(appointment.startsAt)}
-            </li>
-        })}
+        {appointments.length === 0 ?
+            <p>{"There are no appointments scheduled for today."}</p>
+            : appointments.map((appointment) => {
+                return <li key={appointment.startsAt}>
+                    {appointmentTimeOfDay(appointment.startsAt)}
+                </li>
+            })}
     </div>
 }
