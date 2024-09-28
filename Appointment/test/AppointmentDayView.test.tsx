@@ -10,6 +10,13 @@ const emptyCustomer: Customer = {
     phoneNumber: "",
 }
 
+const emptyStylistName = ""
+
+const defaultAppointment = {
+    customer: emptyCustomer,
+    stylistName: emptyStylistName
+}
+
 describe("Appointment", () => {
     let container: HTMLDivElement;
 
@@ -24,26 +31,31 @@ describe("Appointment", () => {
 
     it("renders the customer first name", () => {
         const customer: Customer = { ...emptyCustomer, firstName: "Ashley" }
-        render(<Appointment customer={customer} />);
+        render(<Appointment {...defaultAppointment} customer={customer} />);
         expect(document.body.textContent).toContain("Ashley");
     });
 
     it("renders another customer last name", () => {
         const customer: Customer = { ...emptyCustomer, firstName: "Jordan" }
-        render(<Appointment customer={customer} />);
+        render(<Appointment {...defaultAppointment} customer={customer} />);
         expect(document.body.textContent).toContain("Jordan");
     });
 
     it("renders customer last name", () => {
         const customer: Customer = { ...emptyCustomer, lastName: "Smith" }
-        render(<Appointment customer={customer} />);
+        render(<Appointment {...defaultAppointment} customer={customer} />);
         expect(document.body.textContent).toContain("Smith");
     });
 
     it("renders customer phone number", () => {
         const customer: Customer = { ...emptyCustomer, phoneNumber: "+34 789 654 123" }
-        render(<Appointment customer={customer} />);
+        render(<Appointment {...defaultAppointment} customer={customer} />);
         expect(document.body.textContent).toContain("+34 789 654 123");
+    });
+    it(" renders stylist name", () => {
+        const stylistName = "Jhon"
+        render(<Appointment {...defaultAppointment} stylistName={stylistName} />);
+        expect(document.body.textContent).toContain(stylistName);
     });
 });
 
@@ -53,10 +65,12 @@ describe("AppointmentsDayView", () => {
     const today = new Date();
     const twoAppointments = [
         {
+            ...defaultAppointment,
             startsAt: today.setHours(12, 0),
             customer: { ...emptyCustomer, firstName: "Ashley", }
         },
         {
+            ...defaultAppointment,
             startsAt: today.setHours(13, 0),
             customer: { ...emptyCustomer, firstName: "Jordan" }
         }

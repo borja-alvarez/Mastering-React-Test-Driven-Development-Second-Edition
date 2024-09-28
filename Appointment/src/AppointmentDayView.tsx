@@ -7,21 +7,24 @@ export type Customer = {
 }
 
 interface Props {
-    customer: Customer
+    customer: Customer;
+    stylistName: string
 }
 
-export const Appointment: React.FC<Props> = ({ customer }) => {
+export const Appointment: React.FC<Props> = ({ customer, stylistName }) => {
     return <>
         <div>{customer.firstName}</div>
         <div>{customer.lastName}</div>
         <div>{customer.phoneNumber}</div>
+        <div>{stylistName}</div>
     </>
 };
 
-interface AppointmentsDayViewProps {
+export interface AppointmentsDayViewProps {
     appointments?: {
         startsAt: number;
-        customer: Customer
+        customer: Customer;
+        stylistName: string;
     }[];
 }
 
