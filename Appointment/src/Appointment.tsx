@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 type Customer = { firstName: string; }
 
@@ -19,6 +19,7 @@ interface AppointmentsDayViewProps {
 
 export const AppointmentsDayView: React.FC<AppointmentsDayViewProps> = (props) => {
     const { appointments = [] } = props;
+    const [selected, setSelected] = useState<number>(0);
     const appointmentTimeOfDay = (startsAt: number): string => {
         const [h, m] = new Date(startsAt).toTimeString().split(":");
         return `${h}:${m}`
@@ -26,10 +27,10 @@ export const AppointmentsDayView: React.FC<AppointmentsDayViewProps> = (props) =
     return <div id="appointmentsDayView">
         {appointments.length === 0 ?
             <p>{"There are no appointments scheduled for today."}</p>
-            : <Appointment  {...appointments[0]} />}
-        {appointments.map((appointment) => {
+            : <Appointment  {...appointments[selected]} />}
+        {appointments.map((appointment, index) => {
             return <li key={appointment.startsAt}>
-                <button type="button">
+                <button type="button" onClick={() => setSelected(index)}>
                     {appointmentTimeOfDay(appointment.startsAt)}
                 </button>
             </li>
