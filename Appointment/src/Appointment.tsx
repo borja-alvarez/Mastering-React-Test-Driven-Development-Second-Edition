@@ -29,7 +29,9 @@ export const AppointmentsDayView: React.FC<AppointmentsDayViewProps> = (props) =
             : <Appointment  {...appointments[0]} />}
         {appointments.map((appointment) => {
             return <li key={appointment.startsAt}>
-                {appointmentTimeOfDay(appointment.startsAt)}
+                <button type="button">
+                    {appointmentTimeOfDay(appointment.startsAt)}
+                </button>
             </li>
         })}
     </div>
