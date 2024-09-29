@@ -1,6 +1,5 @@
-import { ReactNode } from 'react';
+import { ReactNode, act } from 'react';
 import ReactDOM from "react-dom/client";
-import { act } from "react-dom/test-utils";
 
 export let container: HTMLDivElement;
 

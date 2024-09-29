@@ -7,5 +7,8 @@ module.exports = {
   },
   globals: {
     IS_REACT_ACT_ENVIRONMENT: true
-  }
+  },
+  setupFilesAfterEnv: [
+    "./test/domMatchers.ts"
+  ]
 };
