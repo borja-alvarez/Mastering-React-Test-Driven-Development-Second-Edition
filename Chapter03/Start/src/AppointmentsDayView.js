@@ -73,7 +73,7 @@ export const AppointmentsDayView = ({
               }
             >
               {appointmentTimeOfDay(
-                appointment.startsAt
+                appointment.startsAt,
               )}
             </button>
           </li>
