@@ -7,26 +7,15 @@ Array.prototype.unique = function () {
 };
 
 Array.prototype.pickRandom = function () {
-  return this[
-    Math.floor(Math.random() * this.length)
-  ];
+  return this[Math.floor(Math.random() * this.length)];
 };
 
 const today = new Date();
 const at = (hours) => today.setHours(hours, 0);
 
-const stylists = [0, 1, 2, 3, 4, 5, 6]
-  .map(() => faker.name.firstName())
-  .unique();
+const stylists = [0, 1, 2, 3, 4, 5, 6].map(() => faker.name.firstName()).unique();
 
-const services = [
-  "Cut",
-  "Blow-dry",
-  "Cut & color",
-  "Beard trim",
-  "Cut & beard trim",
-  "Extensions",
-];
+const services = ["Cut", "Blow-dry", "Cut & color", "Beard trim", "Cut & beard trim", "Extensions"];
 
 const generateFakeCustomer = () => ({
   firstName: faker.name.firstName(),

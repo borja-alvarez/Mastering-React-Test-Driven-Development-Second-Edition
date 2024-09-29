@@ -35,12 +35,15 @@
     "react-dom": "^18.2.0"
   },
   "prettier": {
-    "printWidth": 54
+    "printWidth": 100
   },
   "jest": {
     "testEnvironment": "jsdom",
     "globals": {
       "IS_REACT_ACT_ENVIRONMENT": true
-    }
+    },
+    "setupFilesAfterEnv": [
+      "./test/domMatchers.js"
+    ]
   }
 }
