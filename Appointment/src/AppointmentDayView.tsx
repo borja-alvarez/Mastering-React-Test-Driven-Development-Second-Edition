@@ -11,7 +11,7 @@ interface AppointmentHeaderProps {
 
 const AppointmentHeader: React.FC<AppointmentHeaderProps> = (props) => {
     const { startsAt } = props;
-    return <h2>{`Today's appointment at ${appointmentTimeOfDay(startsAt)}`}</h2>
+    return <h3>{`Today's appointment at ${appointmentTimeOfDay(startsAt)}`}</h3>
 }
 
 interface AppointmentLineProps {
@@ -67,15 +67,19 @@ export const AppointmentsDayView: React.FC<AppointmentsDayViewProps> = (props) =
     const [selected, setSelected] = useState<number>(0);
 
     return <div id="appointmentsDayView" style={{ display: "flex", flexDirection: "row", gap: "16px" }}>
-        <ul style={{ listStyleType: "none", display: "flex", flexDirection: "column", gap: "16px" }}>
+        <ol style={{ listStyleType: "none", display: "flex", flexDirection: "column", gap: "16px" }}>
             {appointments.map((appointment, index) => {
                 return <li key={appointment.startsAt}>
-                    <button type="button" onClick={() => setSelected(index)}>
+                    <button
+                        type="button"
+                        className={index === selected ? "toggled" : ""}
+                        onClick={() => setSelected(index)}
+                    >
                         {appointmentTimeOfDay(appointment.startsAt)}
                     </button>
                 </li>
             })}
-        </ul>
+        </ol>
         <div style={{ borderLeft: "1px solid #000", paddingLeft: "16px" }}>
             {appointments.length === 0 ?
                 <p>{"There are no appointments scheduled for today."}</p>
