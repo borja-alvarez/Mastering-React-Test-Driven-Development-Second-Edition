@@ -1,8 +1,7 @@
-import React, { ReactNode } from "react";
-import ReactDOM from "react-dom/client";
 import { act } from 'react';
 
 import { Appointment, AppointmentProps, AppointmentsDayView, Customer } from "../src/AppointmentDayView";
+import { initializeReactContainer, container, render, click } from "./reactTestExtensions";
 
 const emptyNote = "";
 const emptyService = "";
@@ -23,13 +22,9 @@ const defaultAppointment: AppointmentProps = {
 }
 
 describe("Appointment", () => {
-    let container: HTMLDivElement;
-
-    const render = (component: ReactNode) => act(() => ReactDOM.createRoot(container).render(component))
 
     beforeEach(() => {
-        container = document.createElement("div");
-        document.body.replaceChildren(container);
+        initializeReactContainer();
     });
 
     it("renders the customer first name", () => {
@@ -113,8 +108,6 @@ describe("Appointment", () => {
 });
 
 describe("AppointmentsDayView", () => {
-    let container: HTMLDivElement;
-
     const today = new Date();
     const twoAppointments = [
         {
@@ -129,11 +122,8 @@ describe("AppointmentsDayView", () => {
         }
     ];
 
-    const render = (component: ReactNode) => act(() => ReactDOM.createRoot(container).render(component))
-
     beforeEach(() => {
-        container = document.createElement("div");
-        document.body.replaceChildren(container);
+        initializeReactContainer();
     });
 
     it("renders a div with the right id", () => {
@@ -181,21 +171,21 @@ describe("AppointmentsDayView", () => {
 
     it("renders another appointment when selected", () => {
         render(<AppointmentsDayView appointments={twoAppointments} />);
-        const buttons = document.querySelectorAll("button")[1];
-        act(() => buttons.click());
+        const button = document.querySelectorAll("button")[1];
+        click(button);
         expect(document.body.textContent).toContain("Jordan");
     });
 
     it("adds toggled class to button when selected", () => {
         render(<AppointmentsDayView appointments={twoAppointments} />);
-        const buttons = document.querySelectorAll("button")[1];
-        act(() => buttons.click());
-        expect(buttons.className).toBe("toggled");
+        const button = document.querySelectorAll("button")[1];
+        click(button);
+        expect(button.className).toBe("toggled");
     });
 
     it("does not add toggled class if button is not selected", () => {
         render(<AppointmentsDayView appointments={twoAppointments} />);
-        const buttons = document.querySelectorAll("button")[1];
-        expect(buttons.className).not.toBe("toggled");
+        const button = document.querySelectorAll("button")[1];
+        expect(button.className).not.toBe("toggled");
     });
 });
