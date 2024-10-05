@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomerForm } from "../src/CustomerForm";
-import { initializeReactContainer, render, form, field, element } from "./reactTestExtensions";
+import { initializeReactContainer, render, form, field, element, click } from "./reactTestExtensions";
 
 describe("ComponetForm", () => {
   const blankCustomer = {
@@ -56,5 +56,20 @@ describe("ComponetForm", () => {
     render(<CustomerForm original={blankCustomer} />);
     const button = element("input[type=submit]");
     expect(button).toBeTruthy();
+  });
+
+  it("saves existing first name when submitted", () => {
+    expect.hasAssertions();
+    const customer = { firstName: "Ashley" };
+    render(
+      <CustomerForm
+        original={customer}
+        onSubmit={({ firstName }) => {
+          expect(firstName).toEqual("Ashley");
+        }}
+      />
+    );
+    const button = element("input[type=submit]");
+    click(button);
   });
 });
