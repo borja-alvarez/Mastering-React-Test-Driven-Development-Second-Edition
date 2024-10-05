@@ -1,4 +1,8 @@
 import React from "react";
 export const CustomerForm = () => {
-    return <form></form>
-}
+  return (
+    <form>
+      <input type="text" name="firstName" />
+    </form>
+  );
+};
