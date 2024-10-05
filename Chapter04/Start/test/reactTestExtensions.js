@@ -8,27 +8,24 @@ export const initializeReactContainer = () => {
   document.body.replaceChildren(container);
 };
 
-export const render = (component) =>
-  act(() =>
-    ReactDOM.createRoot(container).render(component)
-  );
+export const render = (component) => act(() => ReactDOM.createRoot(container).render(component));
 
-export const click = (element) =>
-  act(() => element.click());
+export const click = (element) => act(() => element.click());
 
-export const element = (selector) =>
-  document.querySelector(selector);
+export const submit = (formElement) => {
+  const event = new Event("submit", { bubbles: true, cancelable: true });
+  act(() => formElement.dispatchEvent(event));
+  return event;
+};
 
-export const elements = (selector) =>
-  Array.from(document.querySelectorAll(selector));
+export const element = (selector) => document.querySelector(selector);
 
-export const typesOf = (elements) =>
-  elements.map((element) => element.type);
+export const elements = (selector) => Array.from(document.querySelectorAll(selector));
 
-export const textOf = (elements) =>
-  elements.map((element) => element.textContent);
+export const typesOf = (elements) => elements.map((element) => element.type);
+
+export const textOf = (elements) => elements.map((element) => element.textContent);
 
 export const form = () => element("form");
 
-export const field = (fieldName) =>
-  form().elements[fieldName];
+export const field = (fieldName) => form().elements[fieldName];

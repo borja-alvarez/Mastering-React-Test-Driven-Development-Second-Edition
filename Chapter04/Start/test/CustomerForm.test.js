@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomerForm } from "../src/CustomerForm";
-import { initializeReactContainer, render, form, field, element, click } from "./reactTestExtensions";
+import { initializeReactContainer, render, form, field, element, click, submit } from "./reactTestExtensions";
 
 describe("ComponetForm", () => {
   const blankCustomer = {
@@ -71,5 +71,11 @@ describe("ComponetForm", () => {
     );
     const button = element("input[type=submit]");
     click(button);
+  });
+
+  it("prevents the default action when submitting the form", () => {
+    render(<CustomerForm original={blankCustomer} onSubmit={() => {}} />);
+    const event = submit(form());
+    expect(event.defaultPrevented).toBe(true);
   });
 });
