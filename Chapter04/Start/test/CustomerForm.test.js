@@ -46,4 +46,9 @@ describe("ComponetForm", () => {
     const label = element("label[for=firstName]");
     expect(label).toContainText("First name");
   });
+
+  it("assigns an id that matches the label id to the first name field", () => {
+    render(<CustomerForm original={blankCustomer} />);
+    expect(field("firstName").id).toEqual("firstName");
+  });
 });
