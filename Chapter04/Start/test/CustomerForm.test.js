@@ -51,4 +51,10 @@ describe("ComponetForm", () => {
     render(<CustomerForm original={blankCustomer} />);
     expect(field("firstName").id).toEqual("firstName");
   });
+
+  it("renders a submit button", () => {
+    render(<CustomerForm original={blankCustomer} />);
+    const button = element("input[type=submit]");
+    expect(button).toBeTruthy();
+  });
 });

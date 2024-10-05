@@ -4,6 +4,7 @@ export const CustomerForm = ({ original }) => {
     <form>
       <label htmlFor="firstName">First name</label>
       <input readOnly type="text" id="firstName" name="firstName" value={original.firstName} />
+      <input type="submit" value="Add" />
     </form>
   );
 };
