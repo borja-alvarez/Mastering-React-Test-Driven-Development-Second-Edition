@@ -34,4 +34,16 @@ describe("ComponetForm", () => {
     const label = element("label[for=firstName]");
     expect(label).toBeTruthy();
   });
+
+  it("renders a label for the first name field", () => {
+    render(<CustomerForm original={blankCustomer} />);
+    const label = element("label[for=firstName]");
+    expect(label).toBeTruthy();
+  });
+
+  it("renders 'First name' as the first name label", () => {
+    render(<CustomerForm original={blankCustomer} />);
+    const label = element("label[for=firstName]");
+    expect(label).toContainText("First name");
+  });
 });
