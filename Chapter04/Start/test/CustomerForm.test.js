@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomerForm } from "../src/CustomerForm";
-import { initializeReactContainer, render, form, field, element, click, submit, submitButton, change } from "./reactTestExtensions";
+import { initializeReactContainer, render, form, field, element, click, submit, submitButton, change, labelFor } from "./reactTestExtensions";
 
 const blankCustomer = {
   firstName: "",
@@ -24,14 +24,12 @@ const itIncludesTheExistingValue = (fieldName, value) =>
 const itRendersALabel = (fieldName, text) => {
   it("renders a label for the text box", () => {
     render(<CustomerForm original={blankCustomer} />);
-    const label = element(`label[for=${fieldName}]`);
-    expect(label).toBeTruthy();
+    expect(labelFor(fieldName)).toBeTruthy();
   });
 
   it(`renders '${text}' as the label content`, () => {
     render(<CustomerForm original={blankCustomer} />);
-    const label = element(`label[for=${fieldName}]`);
-    expect(label).toContainText(text);
+    expect(labelFor(fieldName)).toContainText(text);
   });
 };
 

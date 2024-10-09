@@ -42,3 +42,5 @@ export const change = (target, value) => {
   const event = new Event("change", { target, bubbles: true });
   act(() => target.dispatchEvent(event));
 };
+
+export const labelFor = (fieldName) => element(`label[for=${fieldName}]`);
